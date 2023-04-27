@@ -1,6 +1,7 @@
 from turtle import Screen
 from scoreboard import Scoreboard
 from paddle import Paddle
+from ball import Ball
 import time
 
 screen = Screen()
@@ -11,10 +12,13 @@ screen.tracer(0)
 
 scoreboard = Scoreboard()
 
+ball = Ball()
+
 paddle = Paddle((0, 350))
 
 screen.listen()
 screen.onkey(paddle.go_right, "Right")
 screen.onkey(paddle.go_left, "Left")
+
 
 screen.exitonclick()
