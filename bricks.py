@@ -14,7 +14,7 @@ class Bricks(Turtle):
 
     def create_bricks(self):
         for i in range(0, len(COLORS)):
-            for x_offset in range(0, 11):
+            for x_offset in range(0, 10):
                 new_brick = Turtle(shape="square")
                 random_len = random.randint(3, 6)
                 new_brick.shapesize(
