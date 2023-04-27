@@ -2,6 +2,7 @@ from turtle import Screen
 from scoreboard import Scoreboard
 from paddle import Paddle
 from ball import Ball
+from bricks import Bricks
 import time
 
 screen = Screen()
@@ -15,6 +16,8 @@ scoreboard = Scoreboard()
 ball = Ball()
 
 paddle = Paddle((0, -350))
+
+bricks = Bricks()
 
 screen.listen()
 screen.onkey(paddle.go_right, "Right")
