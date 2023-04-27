@@ -9,7 +9,7 @@ screen = Screen()
 screen.bgcolor("black")
 screen.setup(width=1000, height=800)
 screen.title("Breakout")
-screen.tracer(0)
+screen.tracer(0.5)
 
 scoreboard = Scoreboard()
 
@@ -41,5 +41,11 @@ while game_is_on:
     # Detect paddle miss
     if ball.ycor() < -385:
         ball.reset_position()
+
+    # Detect brick hit
+    hit_brick = bricks.detect_hit(ball)
+    if hit_brick:
+        scoreboard.point()
+        ball.bounce_y()
 
 screen.exitonclick()
