@@ -1,5 +1,4 @@
 from turtle import Turtle
-import random
 
 COLORS = ["blue", "green", "yellow", "orange", "red"]
 
@@ -16,7 +15,6 @@ class Bricks(Turtle):
         for i in range(0, len(COLORS)):
             for x_offset in range(0, 10):
                 new_brick = Turtle(shape="square")
-                random_len = random.randint(3, 6)
                 new_brick.shapesize(
                     stretch_wid=3, stretch_len=4.8)
                 new_brick.penup()

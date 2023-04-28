@@ -3,7 +3,7 @@ from scoreboard import Scoreboard
 from paddle import Paddle
 from ball import Ball
 from bricks import Bricks
-import time
+from lifes import Lifes
 
 screen = Screen()
 screen.bgcolor("black")
@@ -12,6 +12,8 @@ screen.title("Breakout")
 screen.tracer(0.5)
 
 scoreboard = Scoreboard()
+
+lifes = Lifes()
 
 ball = Ball()
 
@@ -41,6 +43,9 @@ while game_is_on:
     # Detect paddle miss
     if ball.ycor() < -385:
         ball.reset_position()
+        lifes.decrease_life()
+        if lifes.lifes < 1:
+            game_is_on = False
 
     # Detect brick hit
     hit_brick = bricks.detect_hit(ball)
