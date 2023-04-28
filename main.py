@@ -1,15 +1,16 @@
-from turtle import Screen
+import turtle as tr
 from scoreboard import Scoreboard
 from paddle import Paddle
 from ball import Ball
 from bricks import Bricks
 from lifes import Lifes
+import time
 
-screen = Screen()
+screen = tr.Screen()
 screen.bgcolor("black")
 screen.setup(width=1000, height=800)
 screen.title("Breakout")
-screen.tracer(0.5)
+screen.tracer(0)
 
 scoreboard = Scoreboard()
 
@@ -17,7 +18,7 @@ lifes = Lifes()
 
 ball = Ball()
 
-paddle = Paddle((0, -350))
+paddle = Paddle((0, -375))
 
 bricks = Bricks()
 
@@ -28,6 +29,7 @@ screen.onkey(paddle.go_left, "Left")
 game_is_on = True
 while game_is_on:
     screen.update()
+    time.sleep(0.01)
     ball.move()
 
     # Detect collision with wall
@@ -37,11 +39,11 @@ while game_is_on:
         ball.bounce_x()
 
     # Detect collision with paddle
-    if ball.distance(paddle) < 50 and ball.ycor() < -325:
+    if ball.distance(paddle) < 40 and ball.ycor() < -350:
         ball.bounce_y()
 
     # Detect paddle miss
-    if ball.ycor() < -385:
+    if ball.distance(paddle) > 10 and ball.ycor() < -400:
         ball.reset_position()
         lifes.decrease_life()
         if lifes.lifes < 1:
@@ -51,6 +53,19 @@ while game_is_on:
     hit_brick = bricks.detect_hit(ball)
     if hit_brick:
         scoreboard.point()
+        match hit_brick:
+            case "green":
+                ball.set_speed(5)
+            case "yellow":
+                ball.set_speed(7)
+            case "orange":
+                ball.set_speed(9)
+            case "red":
+                ball.set_speed(11)
+            case _:
+                ball.set_speed(3)
         ball.bounce_y()
+        ball.bounce_x()
 
-screen.exitonclick()
+
+tr.mainloop()
