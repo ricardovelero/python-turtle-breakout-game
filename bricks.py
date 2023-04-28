@@ -20,15 +20,13 @@ class Bricks(Turtle):
                 new_brick.penup()
                 new_brick.color(COLORS[i])
                 pos_x = -448 + x_offset * 100
-                print(new_brick.shapesize())
-                print(pos_x)
                 pos_y = -10 + i * 63
                 new_brick.goto(x=pos_x, y=pos_y)
                 self.bricks.append(new_brick)
 
     def detect_hit(self, ball):
         for brick in self.bricks:
-            if brick.distance(ball) < 50:
+            if brick.distance(ball) < 55:
                 brick.hideturtle()
                 brick.setx(-1000)
                 return brick.color()[0]
